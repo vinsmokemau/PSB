@@ -3,6 +3,9 @@ import tkinter as tk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 
+import numpy as np
+
+
 root = tk.Tk()
 
 canvas1 = tk.Canvas(root, width=1000, height=350)
@@ -29,9 +32,12 @@ def insert_number():
     sin_amp = float(entry1.get())
     cos_amp = float(entry2.get())
 
+    time = np.arange(0, 2 * np.pi, 0.1)
+    sin = np.sin(time)
+
     figure1 = Figure(figsize=(5, 5), dpi=100)
     subplot1 = figure1.add_subplot(111)
-    subplot1.plot([1, 2, 3, 4, 5, 6, 7, 8], [5, 6, 1, 3, 8, 9, 3, 5])
+    subplot1.plot(time, sin)
     plot = FigureCanvasTkAgg(figure1, root)
     plot.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH, expand=0)
 
